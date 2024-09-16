@@ -1,4 +1,4 @@
-import Examples.*;
+package Aula_02;
 
 import java.util.Scanner;
 
@@ -14,24 +14,39 @@ public class UserScreen {
         boolean comp;
         Scanner scanner = new Scanner(System.in);
         boolean enter = true;
+        boolean entryDoWhile = false;
+        int option = 0;
 
         while (enter) {
 
-            System.out.println("---------------------------------------------------------------------");
-            System.out.println("Digite o número de uma das opções abaixo:");
-            System.out.println("1 - Como funcionam as variaveis e operadores");
-            System.out.println("2 - Como o Casting funciona");
-            System.out.println("3 - Criar um aluno com seu curso e gerar um id aleatorio para ele");
-            System.out.println("4 - Inserir dados de uma pessoa");
-            System.out.println("5 - Valor do sálario");
-            System.out.println("6 - Como funciona o casting implicito");
-            System.out.println("7 - Como funciona o casting explicito");
-            System.out.println("8 - Testando o resultado de operadores de comparação");
-            System.out.println("9 - Testando o resultado de operadores de lógicos");
-            System.out.println("12 - Sair do programa");
-            System.out.println();
+            do {
 
-            switch (scanner.nextInt()) {
+                    System.out.println("---------------------------------------------------------------------");
+                    System.out.println("Digite o número de uma das opções abaixo:");
+                    System.out.println("1 - Como funcionam as variaveis e operadores");
+                    System.out.println("2 - Como o Casting funciona");
+                    System.out.println("3 - Criar um aluno com seu curso e gerar um id aleatorio para ele");
+                    System.out.println("4 - Inserir dados de uma pessoa");
+                    System.out.println("5 - Valor do sálario");
+                    System.out.println("6 - Como funciona o casting implicito");
+                    System.out.println("7 - Como funciona o casting explicito");
+                    System.out.println("8 - Testando o resultado de operadores de comparação");
+                    System.out.println("9 - Testando o resultado de operadores de lógicos");
+                    System.out.println("10 - Calcular a área de um retângulo");
+                    System.out.println("11 - Aplicando Casting Explicito e Implicito juntos");
+                    System.out.println("12 - Testando casting implicito em diferentes tipos de dados");
+                    System.out.println("13 - Sair do programa");
+                    System.out.println();
+                if(scanner.hasNextInt()) {
+                    option = scanner.nextInt();
+                    entryDoWhile = true;
+                }else{
+                    System.out.println("Erro: Você deve digitar o número de uma das opções abaixo");
+                    scanner.next();
+                }
+            }while (!entryDoWhile);
+
+            switch (option) {
 
                 case 1:
                     System.out.println("As variaveis começam com os seguintes valores:");
@@ -128,10 +143,14 @@ public class UserScreen {
                     Senai aluno = new Senai();
 
                     System.out.println("Qual o nome do aluno:");
-                    aluno.setNome(scanner.next());
+                    scanner.nextLine();
+                    String name = scanner.nextLine();
+                    aluno.setNome(name);
+
 
                     System.out.println("Qual o curso do aluno:");
-                    aluno.setCurso(scanner.next());
+                    String course = scanner.nextLine();
+                    aluno.setCurso(course);
 
                     System.out.println("Qual a nota da sua primeira prova: ");
                     aluno.setNota1(scanner.nextInt());
@@ -142,7 +161,7 @@ public class UserScreen {
                     System.out.println("Qual a nota da sua terceira prova: ");
                     aluno.setNota3(scanner.nextInt());
 
-                    System.out.println("O Aluno: " + aluno.getNome() + " está devidamente matriculado no curso de " + aluno.getCurso() + " com a seguinte matricula " + aluno.getMatricula());
+                    System.out.println("O Aluno " + aluno.getNome() + " está devidamente matriculado no curso de " + aluno.getCurso() + " com a seguinte matricula " + aluno.getMatricula());
                     System.out.println("Soma da nota de suas provas " + aluno.Soma());
 
                     break;
@@ -269,8 +288,49 @@ public class UserScreen {
 
                 case 11:
 
+                    System.out.println("Você escolheu a opção 11");
+
+                    float floatValue = 0;
+                    boolean entry = false;
+                    do {
+                        System.out.println("Digite um número decimal:");
+                        if (scanner.hasNextFloat()) {
+                            floatValue = scanner.nextFloat();
+                            entry = true;
+                        }else {
+                            System.out.println("Erro: Digite novamente");
+                            scanner.next();
+                        }
+                    }while (!entry);
+
+                    CastingExplicitAndImplicit castingExplicitAndImplicit = new CastingExplicitAndImplicit(floatValue);
+
+                    castingExplicitAndImplicit.printValues();
+
                     break;
                 case 12:
+                    System.out.println("Você escolheu a opção 12");
+
+                    short shortValue = 0;
+                    entry = false;
+
+                    do{
+                        System.out.println("Digite um número decimal(short)");
+                        if (scanner.hasNextShort()){
+                            shortValue = scanner.nextShort();
+                            entry = true;
+                        }else{
+                            System.out.println("Erro: Digite novamente");
+                            scanner.next();
+                        }
+                    }while (!entry);
+
+                    DiferenceInDataTypes diferenceInDataTypes = new DiferenceInDataTypes(shortValue);
+
+                    diferenceInDataTypes.printValues();
+
+                    break;
+                case 13:
                     enter = false;
                     System.out.println("Saindo...");
 

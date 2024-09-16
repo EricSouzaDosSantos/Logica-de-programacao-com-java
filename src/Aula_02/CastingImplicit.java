@@ -1,4 +1,4 @@
-package Examples;
+package Aula_02;
 
 public class CastingImplicit {
 
