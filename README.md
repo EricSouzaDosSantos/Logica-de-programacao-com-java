@@ -89,6 +89,12 @@ Para esse projeto eu recomendo que utilize o visual studio code ou o intelliJ ID
 - Abra o projeto pelo IntelliJ. 
 - Execute uma das classes main.
 
+### Passo 3: Executar usando o maven
+
+```
+mvn exec:java
+```
+
 ---
 
 ## Contribuição
